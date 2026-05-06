@@ -1,0 +1,9 @@
+name = "Edge"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "A sharp, minimal Hugo theme with angular design."
+homepage = "https://github.com/"
+min_version = "0.110.0"
+
+[author]
+  name = "Edge Theme"

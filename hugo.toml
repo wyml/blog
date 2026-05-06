@@ -1,0 +1,44 @@
+baseURL = "http://localhost:1313/"
+locale = "zh-cn"
+defaultContentLanguage = "zh-cn"
+title = "EDGE"
+theme = "edge"
+summaryLength = 80
+paginate = 10
+enableRobotsTXT = true
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[params]
+  description = "一个简约、棱角分明的个人博客"
+  heroTitle = "思考<span class='accent'>.</span>记录<span class='accent'>.</span>分享"
+  heroDesc = "这里记录技术探索、学习笔记与生活感悟。简约而不简单，棱角分明，直指本质。"
+  github = "https://github.com/"
+  twitter = ""
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[menu]
+  [[menu.main]]
+    name = "首页"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "文章"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    name = "标签"
+    url = "/tags/"
+    weight = 3
+  [[menu.main]]
+    name = "关于"
+    url = "/about/"
+    weight = 4

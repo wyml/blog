@@ -1,0 +1,79 @@
+{{ define "main" }}
+<div class="container">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-label">探索 · 记录 · 成长</p>
+      <h1 class="hero-title">
+        {{ with .Site.Params.heroTitle }}{{ . | safeHTML }}{{ else }}与自然同行<span class="accent">，</span><br>记录每一刻灵感{{ end }}
+      </h1>
+      <p class="hero-desc">
+        {{ with .Site.Params.heroDesc }}{{ . }}{{ else }}这里记录技术探索、学习笔记与生活感悟。在快节奏的时代，保持一颗亲近自然的心，用文字记录成长的轨迹。{{ end }}
+      </p>
+      <a href="{{ "/posts/" | relURL }}" class="hero-cta">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+        浏览全部文章
+      </a>
+    </div>
+  </section>
+
+  <!-- Recent Posts -->
+  <section class="posts-section">
+    <div class="section-label">
+      <span>最新文章</span>
+    </div>
+
+    <div class="post-list">
+      {{ range first 10 (where .Site.RegularPages "Type" "posts") }}
+      <article class="post-card">
+        <div class="post-card-body">
+          {{ with .Params.tags }}
+          <div class="post-tags">
+            {{ range first 3 . }}
+            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>
+            {{ end }}
+          </div>
+          {{ end }}
+          <h2 class="post-card-title">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+          </h2>
+          <p class="post-card-excerpt">
+            {{ with .Summary }}{{ . | truncate 120 }}{{ end }}
+          </p>
+        </div>
+        <div class="post-card-meta">
+          <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "2006.01.02" }}
+          </time>
+          <a href="{{ .Permalink }}" class="read-more">
+            阅读全文
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+      {{ else }}
+      <p style="color: var(--text-muted); font-size: 0.95rem; padding: 2rem 0;">
+        暂无文章，开始创作吧。
+      </p>
+      {{ end }}
+    </div>
+
+    {{ if gt (len (where .Site.RegularPages "Type" "posts")) 10 }}
+    <div style="text-align:center; padding: 3rem 0;">
+      <a href="{{ "/posts/" | relURL }}" class="hero-cta">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+        查看更多文章
+      </a>
+    </div>
+    {{ end }}
+  </section>
+
+</div>
+{{ end }}

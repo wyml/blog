@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale | default "zh-cn" }}" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+
+  <!-- Prevent theme flash: apply saved theme before paint -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('edge-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- Google Fonts: Playfair Display (headings) + Source Sans 3 (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+
+  {{ with .Site.Params.favicon }}
+  <link rel="icon" href="{{ . | relURL }}">
+  {{ end }}
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- Skip to content (accessibility) -->
+  <a href="#main-content" class="skip-link">跳至正文</a>
+
+  <!-- Reading progress (single pages only) -->
+  {{ if .IsPage }}<div class="reading-progress" role="progressbar" aria-hidden="true"></div>{{ end }}
+
+  {{ partial "header.html" . }}
+
+  <main id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+</div>
+<script src="{{ "js/main.js" | relURL }}"></script>
+</body>
+</html>

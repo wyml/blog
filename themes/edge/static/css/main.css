@@ -1,0 +1,1239 @@
+/* ============================================================
+   Eco Organic Theme — Skeuomorphic + Environmental
+   环保主义 · 拟物质感 · 有机生命
+   ============================================================ */
+
+/* ── Google Fonts: Playfair Display (heading) + Source Sans 3 (body) ── */
+
+/* ============================================================
+   1. CSS Custom Properties — Dark Mode (Forest Night)
+   ============================================================ */
+
+:root,
+[data-theme="dark"] {
+  /* ── 背景色系：深夜森林 ── */
+  --bg-base:      #0f1a12;      /* 深林底色 */
+  --bg-surface:   #1a2e1f;     /* 苔藓表层 */
+  --bg-elevated:  #243828;     /* 草地层级 */
+  --bg-hover:     #2d4431;     /* 悬停提亮 */
+  --bg-card:      #1e2e22;     /* 卡片底色 */
+
+  /* ── 边框色 ── */
+  --border:       #354d3a;     /* 暗枝干 */
+  --border-focus: #7cb87f;     /* 新叶绿 */
+
+  /* ── 强调色：森林主调 ── */
+  --accent:       #5fa55f;     /* 森林绿 */
+  --accent-light: #8fcc8f;    /* 嫩叶绿 */
+  --accent-dark:  #3d7a3d;    /* 深林绿 */
+  --accent-dim:   rgba(95, 165, 95, 0.15);
+  --accent2:      #d4a574;    /* 树皮棕 */
+  --accent2-dim:  rgba(212, 165, 116, 0.12);
+
+  /* ── 文字色 ── */
+  --text-primary:   #e8efe4;   /* 晨雾白 */
+  --text-secondary: #a8b8a8;   /* 灰苔藓 */
+  --text-muted:     #6a7a6a;   /* 深灰苔 */
+  --text-inverse:   #0f1a12;
+
+  /* ── 阴影：自然层次 ── */
+  --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md:    0 6px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg:    0 12px 48px rgba(0, 0, 0, 0.6);
+  --shadow-card:  0 4px 16px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  /* ── 拟物圆角 ── */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+
+  /* ── 拟物质感 ── */
+  --texture-opacity: 0.03;
+  --grain-url: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+
+  /* ── 过渡 ── */
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   2. CSS Custom Properties — Light Mode (Morning Meadow)
+   ============================================================ */
+
+[data-theme="light"] {
+  /* ── 背景色系：清晨草地 ── */
+  --bg-base:      #f4f7f2;     /* 晨雾底色 */
+  --bg-surface:   #ffffff;     /* 纯白表层 */
+  --bg-elevated:  #edf3ea;     /* 嫩芽层 */
+  --bg-hover:     #e5efe3;     /* 轻拂绿 */
+  --bg-card:      #ffffff;     /* 卡片底色 */
+
+  /* ── 边框色 ── */
+  --border:       #c8d9c8;     /* 浅草绿 */
+  --border-focus: #3d7a3d;     /* 深林绿 */
+
+  /* ── 强调色 ── */
+  --accent:       #3d7a3d;     /* 森林绿 */
+  --accent-light: #5fa55f;     /* 明亮绿 */
+  --accent-dark:  #2d5a2d;     /* 深邃绿 */
+  --accent-dim:   rgba(61, 122, 61, 0.1);
+  --accent2:      #c49a6c;    /* 树皮棕 */
+  --accent2-dim:  rgba(196, 154, 108, 0.12);
+
+  /* ── 文字色 ── */
+  --text-primary:   #1a2e1a;   /* 深林墨 */
+  --text-secondary: #4a5e4a;   /* 苔藓灰 */
+  --text-muted:     #8a9a8a;   /* 远山灰 */
+  --text-inverse:   #ffffff;
+
+  /* ── 阴影：柔和自然 ── */
+  --shadow-sm:    0 2px 6px rgba(61, 122, 61, 0.08);
+  --shadow-md:    0 6px 20px rgba(61, 122, 61, 0.12);
+  --shadow-lg:    0 12px 40px rgba(61, 122, 61, 0.15);
+  --shadow-card:  0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================================
+   3. Reset & Base
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  color-scheme: dark light;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Source Sans 3', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-smooth), color var(--transition-smooth);
+  position: relative;
+}
+
+/* 自然纹理覆盖层 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--grain-url);
+  opacity: var(--texture-opacity);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* No transition on first load */
+body.no-transition * {
+  transition: none !important;
+}
+
+img   { max-width: 100%; display: block; }
+a     { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+/* ============================================================
+   4. Typography Scale
+   ============================================================ */
+
+:is(h1, h2, h3, h4, h5, h6) {
+  font-family: 'Playfair Display', 'Noto Serif SC', 'PingFang SC', serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+/* ============================================================
+   5. Layout Scaffold
+   ============================================================ */
+
+.site-wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2rem);
+}
+
+/* ============================================================
+   6. Header & Navigation
+   ============================================================ */
+
+.site-header {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+  /* 拟物：顶部微妙阴影 */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .site-header {
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+}
+
+.nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 1rem;
+}
+
+/* Logo — 有机形态 */
+.site-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  transition: color var(--transition-smooth), transform var(--transition-smooth);
+  /* 拟物：文字阴影 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.site-logo:hover {
+  color: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] .site-logo {
+  text-shadow: none;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.nav-links a {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  position: relative;
+  padding: 6px 0;
+  cursor: pointer;
+  transition: color var(--transition-smooth);
+  border-radius: var(--radius-sm);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 20px;
+  height: 3px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  border-radius: 2px;
+  transition: transform var(--transition-smooth);
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+}
+
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Theme Toggle — 拟物按钮 */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0;
+  transition: all var(--transition-smooth);
+  flex-shrink: 0;
+  /* 拟物：凸起效果 */
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle:hover {
+  background: var(--bg-hover);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-inset);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  pointer-events: none;
+  transition: transform var(--transition-smooth);
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(15deg);
+}
+
+/* Sun icon — shown in dark mode */
+.icon-sun  { display: block; }
+.icon-moon { display: none; }
+
+[data-theme="light"] .icon-sun  { display: none; }
+[data-theme="light"] .icon-moon { display: block; }
+
+/* ============================================================
+   7. Reading Progress Bar
+   ============================================================ */
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s linear;
+  pointer-events: none;
+  /* 拟物：发光效果 */
+  box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-dim);
+}
+
+/* ============================================================
+   8. Hero Section
+   ============================================================ */
+
+.hero {
+  padding: clamp(3.5rem, 10vw, 6rem) 0 clamp(3rem, 8vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景装饰：有机圆形 */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--accent2-dim) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-label::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  border-radius: 1px;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  /* 拟物：微妙阴影 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .hero-title {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-title .accent {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+/* CTA — 拟物按钮：渐变 + 阴影 + 圆角 */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border: none;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  color: #ffffff;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  /* 拟物：凸起效果 */
+  box-shadow: 0 4px 16px rgba(95, 165, 95, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hero-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(95, 165, 95, 0.4), 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+}
+
+.hero-cta:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(95, 165, 95, 0.3);
+}
+
+/* ============================================================
+   9. Section Label
+   ============================================================ */
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-label span {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--border), transparent);
+  border-radius: 1px;
+}
+
+/* ============================================================
+   10. Post List — Index (拟物卡片)
+   ============================================================ */
+
+.posts-section { padding: clamp(2rem, 6vw, 4rem) 0; }
+
+.post-list { display: grid; gap: 1.25rem; }
+
+.post-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  position: relative;
+  transition: all var(--transition-smooth);
+  /* 拟物：卡片阴影 */
+  box-shadow: var(--shadow-card);
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md), 0 0 0 1px var(--accent-dim);
+}
+
+/* Focus-within */
+.post-card:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-md), 0 0 0 2px var(--accent-dim);
+}
+
+/* Tags — 有机胶囊 */
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.tag:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.post-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.post-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  transition: color var(--transition-smooth);
+}
+
+.post-card:hover .post-card-title { color: var(--accent); }
+
+.post-card-excerpt {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.post-card-meta {
+  text-align: right;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.post-date {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.75rem;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all var(--transition-smooth);
+}
+
+.post-card:hover .read-more {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.read-more svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--transition-smooth);
+}
+
+.post-card:hover .read-more svg {
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   11. Single Post
+   ============================================================ */
+
+.post-header {
+  padding: clamp(2.5rem, 8vw, 5rem) 0 2.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+
+.post-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.post-category {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.post-header-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.post-header-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 640px;
+  line-height: 1.75;
+}
+
+/* ============================================================
+   12. Article Content
+   ============================================================ */
+
+.post-content {
+  max-width: 700px;
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  color: var(--text-primary);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.post-content h2 {
+  font-size: 1.6rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-dim);
+}
+
+.post-content h3 { font-size: 1.25rem; }
+
+.post-content p {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+.post-content ul,
+.post-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.post-content ul { list-style: disc; }
+.post-content ol { list-style: decimal; }
+
+.post-content li { margin-bottom: 0.5rem; }
+
+.post-content blockquote {
+  position: relative;
+  padding: 1.25rem 1.5rem 1.25rem 2rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--accent);
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--text-secondary);
+  /* 拟物：内阴影 */
+  box-shadow: var(--shadow-inset);
+}
+
+.post-content blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--accent);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.post-content code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.875em;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--accent2);
+}
+
+.post-content pre {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+  /* 拟物：卡片阴影 */
+  box-shadow: var(--shadow-card);
+}
+
+.post-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.post-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-dim);
+  text-underline-offset: 3px;
+  transition: all var(--transition-smooth);
+}
+
+.post-content a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.post-content hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-dim), var(--border), transparent);
+  margin: 2.5rem 0;
+  border-radius: 1px;
+}
+
+/* Table */
+.post-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 2rem 0;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.post-content th {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--bg-elevated);
+  padding: 12px 16px;
+  text-align: left;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.post-content td {
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.post-content tr:last-child td {
+  border-bottom: none;
+}
+
+/* ============================================================
+   13. Post Navigation
+   ============================================================ */
+
+.post-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.post-nav-item {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  box-shadow: var(--shadow-card);
+}
+
+.post-nav-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.post-nav-item.next { text-align: right; }
+
+.post-nav-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.post-nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   14. Taxonomy
+   ============================================================ */
+
+.taxonomy-section { padding: clamp(2rem, 6vw, 4rem) 0; }
+
+.taxonomy-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.taxonomy-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  box-shadow: var(--shadow-sm);
+}
+
+.taxonomy-item:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.taxonomy-count {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   15. About Page
+   ============================================================ */
+
+.about-section {
+  padding: clamp(2rem, 6vw, 4rem) 0;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: clamp(2rem, 6vw, 4rem);
+  align-items: start;
+}
+
+.stat-block {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  margin-bottom: 1.25rem;
+  transition: all var(--transition-smooth);
+  box-shadow: var(--shadow-card);
+}
+
+.stat-block:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+/* ============================================================
+   16. Footer
+   ============================================================ */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  background: var(--bg-surface);
+  transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition-smooth);
+}
+
+.footer-links a:hover { color: var(--accent); }
+
+/* ============================================================
+   17. Pagination
+   ============================================================ */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 3rem 0;
+}
+
+.page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  box-shadow: var(--shadow-sm);
+}
+
+.page-btn:hover,
+.page-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================
+   18. 404 Error Page
+   ============================================================ */
+
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.error-code {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(5rem, 18vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  /* 拟物：渐变文字 */
+  background: linear-gradient(180deg, var(--text-muted) 0%, var(--border) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.error-msg {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* ============================================================
+   19. About Page
+   ============================================================ */
+
+.about-header {
+  text-align: center;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 3rem;
+  /* 拟物：渐变底边装饰 */
+  background: linear-gradient(180deg, var(--bg-base) 0%, transparent 100%);
+}
+
+.about-header .post-header-meta {
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.about-header .post-header-title {
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  margin-bottom: 0.75rem;
+  /* 拟物：文字阴影 */
+  text-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.about-header .post-header-subtitle {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.about-header .post-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* 关于页面 h2 样式 */
+.about-header + .post-content h2 {
+  font-size: 1.4rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-header + .post-content h2:first-of-type {
+  margin-top: 0;
+}
+
+/* 关于页面列表项特色 */
+.about-header + .post-content li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.about-header + .post-content li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+/* 关于页面表格更圆润 */
+.post-content.about-table table {
+  border-radius: var(--radius-lg);
+}
+
+/* ============================================================
+   20. Utility Classes
+   ============================================================ */
+
+.accent-text { color: var(--accent); }
+.muted { color: var(--text-muted); }
+.surface { background: var(--bg-surface); }
+
+/* ============================================================
+   20. Focus & Accessibility
+   ============================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Skip to content link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  color: #ffffff;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.2s;
+  box-shadow: var(--shadow-md);
+}
+
+.skip-link:focus { top: 1rem; }
+
+/* ============================================================
+   21. Responsive
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .about-section {
+    grid-template-columns: 1fr;
+  }
+  .post-nav {
+    grid-template-columns: 1fr;
+  }
+  .post-card {
+    grid-template-columns: 1fr;
+  }
+  .post-card-meta { text-align: left; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* ============================================================
+   22. Reduced Motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   23. Scrollbar
+   ============================================================ */
+
+::-webkit-scrollbar          { width: 8px; height: 8px; }
+::-webkit-scrollbar-track    { background: var(--bg-base); }
+::-webkit-scrollbar-thumb    { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ============================================================
+   24. Selection
+   ============================================================ */
+
+::selection {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
