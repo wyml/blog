@@ -1,7 +1,7 @@
 baseURL = "https://landonblue.cn/"
 locale = "zh-cn"
 defaultContentLanguage = "zh-cn"
-title = "蓝顿博客"
+title = "蓝顿"
 summaryLength = 80
 paginate = 10
 enableRobotsTXT = true
@@ -14,11 +14,10 @@ enableRobotsTXT = true
     unsafe = true
 
 [params]
-  description = "一个简约、棱角分明的个人博客"
-  heroTitle = "思考<span class='accent'>.</span>记录<span class='accent'>.</span>分享"
-  heroDesc = "这里记录技术探索、学习笔记与生活感悟。简约而不简单，棱角分明，直指本质。"
-  github = "https://github.com/"
-  twitter = ""
+  description = "蓝顿的个人博客，记录技术探索、生活感悟与成长轨迹"
+  heroTitle = "思考<span class='accent'>·</span>记录<span class='accent'>·</span>分享"
+  heroDesc = "一个热爱技术、热爱生活的普通人的小天地。这里记录着代码、学习、潜水与生活的点点滴滴。"
+  github = "https://github.com/wyml"
 
 [taxonomies]
   tag = "tags"
