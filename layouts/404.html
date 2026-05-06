@@ -1,0 +1,11 @@
+{{ define "main" }}
+<div class="container">
+  <div class="error-page">
+    <div>
+      <div class="error-code">404</div>
+      <p class="error-msg">页面不存在，可能已被移走或输入了错误的地址。</p>
+      <a href="{{ "/" | relURL }}" class="hero-cta">← 返回首页</a>
+    </div>
+  </div>
+</div>
+{{ end }}

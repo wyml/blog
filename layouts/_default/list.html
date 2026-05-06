@@ -1,0 +1,54 @@
+{{ define "main" }}
+<div class="container">
+  <section class="posts-section">
+
+    <div class="hero" style="padding-bottom: 2rem;">
+      <div class="hero-content">
+        <p class="hero-label">
+          {{ if .IsHome }}全部文章{{ else }}{{ .Title }}{{ end }}
+        </p>
+        <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3rem);">
+          {{ if .IsHome }}所有文章{{ else }}{{ .Title }}{{ end }}
+        </h1>
+      </div>
+    </div>
+
+    <div class="post-list">
+      {{ range .Pages }}
+      <article class="post-card">
+        <div class="post-card-body">
+          {{ with .Params.tags }}
+          <div class="post-tags">
+            {{ range first 3 . }}
+            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>
+            {{ end }}
+          </div>
+          {{ end }}
+          <h2 class="post-card-title">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+          </h2>
+          <p class="post-card-excerpt">
+            {{ with .Summary }}{{ . | truncate 120 }}{{ end }}
+          </p>
+        </div>
+        <div class="post-card-meta">
+          <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "2006.01.02" }}
+          </time>
+          <a href="{{ .Permalink }}" class="read-more">
+            阅读全文
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+
+    <!-- Pagination -->
+    {{ template "_internal/pagination.html" . }}
+
+  </section>
+</div>
+{{ end }}

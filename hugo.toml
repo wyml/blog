@@ -1,8 +1,7 @@
-baseURL = "http://localhost:1313/"
+baseURL = "https://landonblue.cn/"
 locale = "zh-cn"
 defaultContentLanguage = "zh-cn"
-title = "EDGE"
-theme = "edge"
+title = "蓝顿博客"
 summaryLength = 80
 paginate = 10
 enableRobotsTXT = true
