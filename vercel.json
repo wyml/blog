@@ -1,5 +1,8 @@
 {
-  "buildCommand": "hugo --minify --baseURL https://landonblue.cn/",
+  "buildCommand": "hugo --environment production --minify --baseURL https://landonblue.cn/",
   "outputDirectory": "public",
-  "framework": "hugo"
+  "framework": "hugo",
+  "env": {
+    "HUGO_VERSION": "0.161.1"
+  }
 }
