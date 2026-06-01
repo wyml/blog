@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-  <title>{{ with .Title }}{{ . }}{{ else }}{{ $.Site.Title }}{{ end }}{{ if not .IsHome }} — {{ $.Site.Title }}{{ end }}</title>
+  <title>
+    {{- if .IsHome -}}
+      首页 - {{ .Site.Title }}
+    {{- else if .Title -}}
+      {{ .Title }} - {{ .Site.Title }}
+    {{- else -}}
+      {{ .Site.Title }}
+    {{- end -}}
+  </title>
 
   <!-- Prevent theme flash: apply saved theme before paint -->
   <script>
