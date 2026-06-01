@@ -2,7 +2,9 @@
   "buildCommand": "hugo --environment production --minify --baseURL https://landonblue.cn/",
   "outputDirectory": "public",
   "framework": "hugo",
-  "env": {
-    "HUGO_VERSION": "0.161.1"
+  "build": {
+    "env": {
+      "HUGO_VERSION": "0.162.1"
+    }
   }
 }

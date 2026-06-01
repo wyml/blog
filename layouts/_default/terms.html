@@ -9,14 +9,14 @@
     </div>
 
     <div class="section-label">
-      <span>// {{ len .Data.Terms }} tags</span>
+      <span>// {{ len .Pages }} tags</span>
     </div>
 
     <div class="taxonomy-grid">
-      {{ range .Data.Terms.ByCount }}
-      <a href="{{ .Page.Permalink }}" class="taxonomy-item">
-        # {{ .Page.Title }}
-        <span class="taxonomy-count">({{ .Count }})</span>
+      {{ range .Pages.ByTitle }}
+      <a href="{{ .Permalink }}" class="taxonomy-item">
+        # {{ .Title }}
+        <span class="taxonomy-count">({{ len .Pages }})</span>
       </a>
       {{ end }}
     </div>
