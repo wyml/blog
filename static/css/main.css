@@ -1237,3 +1237,225 @@ ul, ol { list-style: none; }
   background: var(--accent-dim);
   color: var(--accent);
 }
+
+/* ============================================================
+   25. 六一儿童节限定彩蛋 — Children's Day Theme (June 1st only)
+   ============================================================ */
+
+/* ── 顶部节日横幅 ── */
+.childrens-day-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  background: linear-gradient(90deg,
+    #ff6b9d 0%, #ff9f43 20%, #ffd32a 40%,
+    #54a0ff 60%, #5f27cd 80%, #ff6b9d 100%
+  );
+  background-size: 200% 100%;
+  animation: banner-rainbow 4s linear infinite;
+  padding: 10px 20px;
+  text-align: center;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: default;
+  user-select: none;
+}
+
+.childrens-day-banner .cd-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.25);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.childrens-day-banner .cd-close:hover {
+  background: rgba(255,255,255,0.45);
+}
+
+/* 横幅颜色动画 */
+@keyframes banner-rainbow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* 横幅出现时整体下移 */
+.cd-banner-active .site-header {
+  top: 42px;
+}
+
+/* ── 气球飘落容器 ── */
+#cd-balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -120px;
+  pointer-events: auto;
+  animation: balloon-rise linear forwards;
+  transform-origin: center bottom;
+  cursor: pointer;
+}
+
+.balloon:hover {
+  filter: brightness(1.2) drop-shadow(0 0 12px rgba(255,255,255,0.6));
+}
+
+.balloon svg {
+  animation: balloon-sway ease-in-out infinite alternate;
+}
+
+@keyframes balloon-rise {
+  0%   { transform: translateY(0); opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+@keyframes balloon-sway {
+  0%   { transform: rotate(-6deg); }
+  100% { transform: rotate(6deg); }
+}
+
+/* 气球爆炸粒子 */
+.balloon-pop {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9995;
+  animation: pop-fade 0.6s ease forwards;
+}
+
+@keyframes pop-fade {
+  0%   { transform: scale(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1) rotate(180deg); opacity: 0; }
+}
+
+/* ── 点击星星彩蛋 ── */
+.click-star {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 1.4rem;
+  animation: star-burst 0.8s ease forwards;
+}
+
+@keyframes star-burst {
+  0%   { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+  50%  { opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1.5) rotate(180deg) translateY(-30px); opacity: 0; }
+}
+
+/* ── Logo 彩虹效果 ── */
+.cd-logo-rainbow {
+  background: linear-gradient(90deg,
+    #ff6b9d, #ff9f43, #ffd32a, #54a0ff, #5f27cd
+  ) !important;
+  background-size: 200% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: logo-hue 3s linear infinite !important;
+  text-shadow: none !important;
+}
+
+@keyframes logo-hue {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ── 倒计时/祝福卡片 ── */
+.cd-wish-card {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9992;
+  background: linear-gradient(135deg, #ff6b9d22, #54a0ff22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,107,157,0.35);
+  border-radius: 20px;
+  padding: 16px 20px;
+  max-width: 220px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  animation: wish-in 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.cd-wish-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+@keyframes wish-in {
+  0%   { opacity: 0; transform: translateY(30px) scale(0.8); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.cd-wish-emoji {
+  font-size: 2rem;
+  margin-bottom: 6px;
+  animation: bounce-wish 1.2s ease-in-out infinite;
+}
+
+@keyframes bounce-wish {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.cd-wish-text {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #ff6b9d, #54a0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.5;
+}
+
+.cd-wish-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ── 彩色纸屑背景粒子 ── */
+.confetti-piece {
+  position: fixed;
+  top: -20px;
+  pointer-events: none;
+  z-index: 9989;
+  border-radius: 2px;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+}
