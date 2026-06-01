@@ -6,11 +6,11 @@
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <title>
     {{- if .IsHome -}}
-      首页 - {{ .Site.Title }}
+      首页 - {{ $.Site.Title }}
     {{- else if .Title -}}
-      {{ .Title }} - {{ .Site.Title }}
+      {{ .Title }} - {{ $.Site.Title }}
     {{- else -}}
-      {{ .Site.Title }}
+      {{ $.Site.Title }}
     {{- end -}}
   </title>
 
