@@ -1,7 +1,10 @@
 <header class="site-header" role="banner">
   <nav class="nav-inner" aria-label="主导航">
     <a href="{{ "/" | relURL }}" class="site-logo" aria-label="{{ .Site.Title }} 首页">
-      蓝顿
+      {{ with .Site.Params.logo }}
+      <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" class="site-logo-img">
+      {{ end }}
+      <span class="site-logo-text">{{ .Site.Title }}</span>
     </a>
 
     <div style="display:flex; align-items:center; gap: clamp(0.75rem, 3vw, 2rem);">

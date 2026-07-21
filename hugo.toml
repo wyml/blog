@@ -18,6 +18,8 @@ enableRobotsTXT = true
   heroTitle = "思考<span class='accent'>·</span>记录<span class='accent'>·</span>分享"
   heroDesc = "一个热爱技术、热爱生活的普通人的小天地。这里记录着代码、学习、潜水与生活的点点滴滴。"
   github = "https://github.com/wyml"
+  favicon = "/favicon.ico"
+  logo = "/images/avatar.png"
 
 [taxonomies]
   tag = "tags"
