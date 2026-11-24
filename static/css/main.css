@@ -1019,6 +1019,14 @@ ul, ol { list-style: none; }
 
 .footer-links a:hover { color: var(--accent); }
 
+.footer-sep { margin: 0 0.35rem; }
+
+.footer-copy a {
+  transition: color var(--transition-smooth);
+}
+
+.footer-copy a:hover { color: var(--accent); }
+
 /* ============================================================
    17. Pagination
    ============================================================ */
